@@ -1,0 +1,26 @@
+{
+  "name": "exepad",
+  "displayName": "Exepad",
+  "version": "1.0.0",
+  "description": "Create, change, build and publish web apps in your Exepad account from a conversation. Claude writes the code; Exepad keeps every change as a revision, builds it, gives you a private preview, and publishes a build only after you approve it in Exepad.",
+  "author": {
+    "name": "Exepad LLC",
+    "email": "support@exepad.com",
+    "url": "https://exepad.com"
+  },
+  "homepage": "https://exepad.com",
+  "repository": "https://github.com/Exepad/claude-plugin",
+  "license": "MIT",
+  "keywords": [
+    "app builder",
+    "web apps",
+    "react",
+    "preview",
+    "publish"
+  ],
+  "icon": "./assets/icon.png",
+  "documentationUrl": "https://exepad.com/ai-assistant-plugins",
+  "supportUrl": "https://exepad.com/contact",
+  "privacyPolicyUrl": "https://exepad.com/privacy",
+  "termsOfServiceUrl": "https://exepad.com/terms"
+}

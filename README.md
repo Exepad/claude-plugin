@@ -21,14 +21,23 @@ asking you before anything goes live. It also names Exepad's server, `https://mc
 ## How to use it
 
 1. You need an Exepad account. Every Exepad plan connects through Claude's connector.
-2. Adding the plugin does not add the connector or sign you in. In Claude, open the plugin from Customize › Plugins,
-   select its Connectors tab, and add and connect Exepad there. You can also add it from Customize › Connectors:
-   choose Add custom connector, name it Exepad and enter `https://mcp.exepad.com/mcp`.
+2. In Claude, add the plugin from Customize › Plugins. Adding it does not connect Exepad or sign you in: open the
+   plugin, select its Connectors tab, and connect Exepad there. The Exepad connector is also listed on its own in
+   Claude's directory, under Customize › Connectors › Browse.
 3. Sign in with your Exepad account, and choose the apps Claude may work on.
 4. Ask Claude, for example: "Build a habit tracker where I can tick off habits each day, then show me the preview."
 
-On a Claude Team or Enterprise plan, an Owner adds Exepad in Organization settings › Connectors, and members then
-connect with their own Exepad accounts.
+Claude asks before every Exepad tool call until you choose Always allow (Customize › Connectors › Exepad › Tool
+permissions); setting Read-only tools to Always allow stops the prompts for reads.
+
+Disconnect in Claude does not end the connection on Exepad's side. To end access, revoke Claude in Exepad › AI
+assistant plugins (https://app.exepad.com/assistants).
+
+On a Claude Team or Enterprise plan, an Owner may need to allow Exepad first, in Organization settings › Connectors;
+members then connect with their own Exepad accounts.
+
+Only if Claude does not offer the Exepad connector, add it yourself as a custom connector: in Customize › Connectors,
+choose Add custom connector, name it Exepad and enter `https://mcp.exepad.com/mcp`.
 
 ## What it sends and stores
 

@@ -138,8 +138,8 @@ When `apply_changes` refuses:
   preview panel. The image may not reach you: if it did not, do not describe how the page looks. Fix what the report
   shows, build again, and check again.
 - Inspections are limited per connection each hour: inspect after a build, not after every change.
-- The preview is private to the app's owner and uses its own database, separate from the live app's, so data
-  entered in the preview does not appear in the live app.
+- The preview is private to the app's owner. An app with data has a preview database separate from the live app's,
+  so data entered in the preview does not appear in the live app. A one-page site has no database.
 
 ## 7. Publish, only when the user asks
 

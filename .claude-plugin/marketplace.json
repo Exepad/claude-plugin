@@ -1,6 +1,6 @@
 {
   "name": "exepad",
-  "description": "Create, change, build and publish web apps in your Exepad account from a conversation. Claude writes the code; Exepad keeps every change as a revision, builds it, gives you a private preview, and publishes a build only after you approve it in Exepad.",
+  "description": "Build and host websites and web apps in your Exepad account from a conversation. Claude writes the code; Exepad keeps every change as a revision, builds it, gives you a private preview, and publishes a build at its public web address only after you approve it in Exepad.",
   "owner": {
     "name": "Exepad LLC",
     "email": "support@exepad.com"
@@ -9,7 +9,7 @@
     {
       "name": "exepad",
       "source": "./",
-      "description": "Create, change, build and publish web apps in your Exepad account from a conversation. Claude writes the code; Exepad keeps every change as a revision, builds it, gives you a private preview, and publishes a build only after you approve it in Exepad."
+      "description": "Build and host websites and web apps in your Exepad account from a conversation. Claude writes the code; Exepad keeps every change as a revision, builds it, gives you a private preview, and publishes a build at its public web address only after you approve it in Exepad."
     }
   ]
 }

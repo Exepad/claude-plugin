@@ -1,8 +1,8 @@
 # Exepad for Claude
 
-Exepad turns a conversation with Claude into a working web app that you own. Claude writes the app's code in your
-Exepad account, and Exepad keeps every change as a revision, builds it, gives you a private preview, and publishes a
-build only after you approve it in Exepad.
+Exepad turns a conversation with Claude into a working website or web app that you own, hosted by Exepad at its own
+web address. Claude writes the app's code in your Exepad account, and Exepad keeps every change as a revision, builds
+it, gives you a private preview, and publishes a build only after you approve it in Exepad.
 
 ## What it does
 
@@ -49,9 +49,9 @@ privacy policy is at https://exepad.com/privacy.
 
 ## Claude Code
 
-In Claude Code, the plugin's `exepad` server connects with its own sign-in, which needs Exepad Pro. On other Exepad
-plans, switch the plugin's `exepad` server off in `/mcp` and use the Exepad connector you added on claude.ai, which
-Claude Code offers when you sign in with the same Claude account.
+In Claude Code, the plugin's `exepad` server connects with its own sign-in, on every Exepad plan. Claude Code also
+offers the Exepad connector you added on claude.ai when you sign in with the same Claude account; to keep one set of
+Exepad tools, switch one of the two off in `/mcp`.
 
 ## Help
 

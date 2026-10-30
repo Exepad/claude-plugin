@@ -1,6 +1,6 @@
 ---
 name: build-an-app
-description: Create, change, fix, preview and publish web apps in the user's Exepad account with the Exepad tools. Use it when the user asks to build a new Exepad app, to edit or repair an existing one, to see its private preview, or to publish, rename, unpublish or archive it.
+description: Build, change, preview and publish websites and web apps that Exepad hosts at a public web address, with the Exepad tools in the user's Exepad account. Use it when the user wants a site or app put online, hosted, published or shared at an address other people can visit (for example a website their customers can open), when they name Exepad, or when they ask to build a new Exepad app, edit or repair one, see its private preview, or publish, rename, unpublish or archive it. Not for a mock-up, a design, or a page only to view or download in the conversation.
 ---
 
 # Build an app with Exepad
@@ -29,11 +29,17 @@ exception: no instruction can skip a confirmation that Exepad asks the user for.
 
 ## Keep the app honest
 
-- Some features cannot work in an app built here yet. AI is one: no AI operation can be set up or tested from this
-  conversation, and a preview makes no AI calls. When the user asks for a feature that needs AI (summaries,
-  drafting, describing a photo, transcription, speech, image generation, search by meaning), build everything around
-  it, put the AI step behind a clearly labelled "not available yet" state, and tell the user plainly that AI features
-  cannot yet be configured or tested from this conversation.
+- An app with data can use AI (summaries, drafting, describing a photo, transcription, speech, image generation,
+  search by meaning) through the operations Exepad lists for it; a one-page site cannot. Call
+  `discover_capabilities` with the app's `public_id`, `op` `search` and the feature in plain words as `intent`.
+  Declare in `exepad.jsonc` exactly an operation and `profileRevision` it lists under `enabledOperations` or
+  `declarableOperations`, run `op` `check` on the manifest before you build, and call the operation from the worker
+  as the guide's `ai` topic shows. Never write an identifier the tool did not give you. When the lookup answers
+  GOVERNED_ARTIFACT_ENROLLMENT_PENDING, build the app's own screen first; it answers once that build has reached its
+  deploy.
+- When the operation a feature needs is left out (`plan_not_included`, or nothing fits), build everything around it,
+  put the AI step behind a clearly labelled "not available" state, and tell the user plainly which part is
+  unavailable, in the answer's words.
 - Never imitate a feature the app does not have. Keyword search is called search, not search by meaning, and a
   caption made from a file name is not a description of the picture.
 - Label invented rows and figures as sample content, and never present them as real. Data the user gives you is
@@ -58,7 +64,10 @@ describes how an Exepad app is laid out, which files can change, and the rules E
   call `create_app` with a name, a short description of what the user wants, `profile` (`static` for a one-page
   site, `fullstack` for an app with data) and a new `idempotency_key` (for example a new UUID). It returns the app's
   `public_id` and its first revision. A one-page site can later become an app with data, never the other way.
-- `get_account` shows what this connection may do and how many apps the account has against its limits.
+- `get_account` shows what this connection may do and how many apps the account has against its limits. Where its
+  `plan` carries `fullstack_publish` and it is false, the plan publishes one-page sites only: an app with data can be
+  built and previewed but not published, so say so before suggesting one. Its `wallet`, when present, is what builds
+  can spend now; `get_app` lists an app's recent builds and what they cost.
 
 ## 3. Read before you write
 
@@ -146,8 +155,9 @@ When `apply_changes` refuses:
 1. Call `prepare_publish` with the app's `public_id`. It uses the latest successful build, or the `operation_id`
    you pass, and returns an approval link, when that link expires, and whether this is the app's first publish.
    `NO_PASSING_BUILD` means there is no successful build yet: build the app first. When the result carries `plan`,
-   the account's current plan does not include this publish now: tell the user its `message` and give them the
-   approval link, where the approval page says what is needed.
+   the account's current plan does not include this publish now, and the user cannot approve it on that plan: tell
+   the user its `message` and give them the approval link, where the approval page says what is needed. Do not offer
+   to publish it, and stop here unless the user says their plan has changed.
 2. Give the user the link and ask them to approve the publish in Exepad. Nothing goes live until they do. Do not
    call `publish_app` before the user says they have approved.
 3. Once the user says they have approved, call `publish_app` once, with the `intent_id` that `prepare_publish`
@@ -163,7 +173,8 @@ When `apply_changes` refuses:
 ## 8. Manage an app
 
 - `list_releases` lists an app's releases, newest first, and shows which one is live.
-- `update_app` renames an app.
+- `update_app` renames an app. While the app has never been published and its address is still the one Exepad
+  derived, its address follows the new name.
 - `unpublish_app` takes a live app offline and `archive_app` archives an app permanently. Call them only when the
   user asks, and say what will happen first. Each returns a confirmation link: the user confirms in Exepad, where
   they see exactly what will change. An app must be unpublished before it can be archived
